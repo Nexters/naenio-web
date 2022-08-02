@@ -30,6 +30,7 @@ const Container = styled.div`
 `;
 
 const TitleContainer = styled.div`
+  max-width: 400px;
   width: 100%;
   max-height: 197px;
   margin: 30px 40px;
