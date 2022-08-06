@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import ProfileImageSrc1 from "../images/profile_image_1.png";
+import VoteBoxSrc from "../images/vote_box.png";
+import BubbleSrc from "../images/bubble.png";
 
 interface Choice {
   sequence: number,
@@ -36,20 +39,45 @@ const TitleContainer = styled.div`
   margin: 30px 40px;
 `;
 
-const MemberName = styled.p`
+const ProfileImage = styled.img`
+  position: relative;
+  top: 5.5px;
+  width: 24px;
+  height: 24px;
+`;
+
+const MemberName = styled.span`
+  font-style: normal;
+  font-weight: 500;
+  font-family: "Pretendard-Medium", system-ui;
   color: #ffffff;
   font-size: 16px;
   line-height: 31px;
+  margin-left: 6px;
 `;
 
-const VoteInfo = styled.p`
+const VoteBox = styled.img`
+  position: relative;
+  top: 5px;
+  width: 20px;
+  height: 22px;
+`;
+
+const VoteInfo = styled.span`
+  font-family: "Pretendard-Medium", system-ui;
+  font-style: normal;
+  font-weight: 500;
   margin-top: 24px;
   color: #ffffff;
   font-size: 14px;
   line-height: 22px;
+  margin-left: 3px;
 `;
 
 const PostTitle = styled.p`
+  font-family: "Pretendard-SemiBold", system-ui;
+  font-style: normal;
+  font-weight: 600;
   margin-top: 4px;
   color: #ffffff;
   font-size: 22px;
@@ -57,6 +85,9 @@ const PostTitle = styled.p`
 `;
 
 const PostContent = styled.p`
+  font-family: "Pretendard-Medium", system-ui;
+  font-style: normal;
+  font-weight: 500;
   margin-top: 10px;
   color: #ffffff;
   font-size: 16px;
@@ -82,11 +113,24 @@ const FirstChoiceContainer = styled.div`
   align-items: center;
 `;
 
+const ChoiceIndex = styled.p`
+  font-family: "Montserrat-Bold", system-ui;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  color: #ffffff;
+  line-height: 22px;
+  margin-left: 14px;
+`;
+
 const ChoiceName = styled.p`
+  font-family: "Pretendard-SemiBold", system-ui;
+  font-style: normal;
+  font-weight: 600;
   font-size: 16px;
   line-height: 22px;
   color: #ffffff;
-  margin: 14px;
+  margin: 14px 6px;
 `;
 
 const VersusMarkContainer = styled.div`
@@ -105,6 +149,9 @@ const VersusMarkContainer = styled.div`
 `;
 
 const VersusMark = styled.p`
+  font-family: "Montserrat-SemiBold", system-ui;
+  font-style: normal;
+  font-weight: 600;
   font-size: 18px;
   line-height: 25px;
   color: #060606;
@@ -131,20 +178,33 @@ const CommentContainer = styled.div`
   align-items: center;
 `;
 
-const CommentTitle = styled.p`
-  font-size: 16px;
-  line-height: 22px;
-  color: #ffffff;
+const Bubble = styled.img`
+  position: relative;
+  top: 1px;
+  width: 19px;
+  height: 19px;
   margin-left: 14px;
 `;
 
+const CommentTitle = styled.p`
+  font-family: "Pretendard-SemiBold", system-ui;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #ffffff;
+  margin-left: 4px;
+`;
+
 const CommentCount = styled.p`
+  font-family: "Pretendard-Regular", system-ui;
+  font-style: normal;
+  font-weight: 400;
   font-size: 16px;
   line-height: 17px;
   color: #ffffff;
   margin: 6px;
 `;
-
 
 const PostDetailPage: React.FC = () => {
   const { postId } = useParams<string>();
@@ -174,11 +234,11 @@ const PostDetailPage: React.FC = () => {
         choices: [
           {
             sequence: 0,
-            name: "A. 세상 모든 사람이 날 알아보기정말",
+            name: "세상 모든 사람이 날 알아보기정말",
           },
           {
             sequence: 1,
-            name: "B. 투명 인간 취급당하며 힘들게 살기"
+            name: "투명 인간 취급당하며 힘들게 살기"
           }
         ],
         commentCount: 300
@@ -189,25 +249,38 @@ const PostDetailPage: React.FC = () => {
       .then(it => setPost(it));
   }, [])
 
+  const getProfileImageSrc = (iconKey: number) => {
+    if (iconKey === 1) {
+      return ProfileImageSrc1
+    }
+    return undefined;
+  }
+
   return (
     <Container>
       <TitleContainer>
-        <MemberName>김만두</MemberName>
+        <ProfileImage src={getProfileImageSrc(post.member.iconKey)} />
+        <MemberName>{post.member.name}</MemberName>
+        <br />
+        <VoteBox src={VoteBoxSrc} />
         <VoteInfo>{post.voteCount}명 투표</VoteInfo>
         <PostTitle>{post.post.title}</PostTitle>
         <PostContent>{post.post.content}</PostContent>
         <ChoicesContainer>
           <FirstChoiceContainer>
+            <ChoiceIndex>A.</ChoiceIndex>
             <ChoiceName>{post.choices[0].name}</ChoiceName>
           </FirstChoiceContainer>
           <VersusMarkContainer>
             <VersusMark>vs</VersusMark>
           </VersusMarkContainer>
           <SecondChoiceContainer>
+            <ChoiceIndex>B.</ChoiceIndex>
             <ChoiceName>{post.choices[1].name}</ChoiceName>
           </SecondChoiceContainer>
         </ChoicesContainer>
         <CommentContainer>
+          <Bubble src={BubbleSrc} />
           <CommentTitle>댓글</CommentTitle>
           <CommentCount>{post.commentCount}개</CommentCount>
         </CommentContainer>
