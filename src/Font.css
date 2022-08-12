@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url(./fonts/montserrat/Montserrat-Bold.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Pretendard-SemiBold";
+    src: url(./fonts/pretendard/Pretendard-SemiBold.woff2) format("woff");
+}
+
+@font-face {
+    font-family: "Pretendard-Medium";
+    src: url(./fonts/pretendard/Pretendard-Medium.woff2) format("woff");
+}
+
+@font-face {
+    font-family: "Pretendard-Regular";
+    src: url(./fonts/pretendard/Pretendard-Regular.woff2) format("woff");
+}
