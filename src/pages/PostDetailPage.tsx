@@ -94,8 +94,8 @@ const PostTitle = styled.p`
   font-weight: 600;
   margin-top: 4px;
   color: #ffffff;
-  font-size: 22px;
-  line-height: 31px;
+  font-size: 20px;
+  line-height: 29px;
 `;
 
 const PostContent = styled.p`
@@ -104,8 +104,8 @@ const PostContent = styled.p`
   font-weight: 500;
   margin-top: 10px;
   color: #ffffff;
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 14px;
+  line-height: 21px;
 `;
 
 interface NeedLoginContainerProps {
@@ -159,7 +159,7 @@ const ChoiceName = styled.p`
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
-  line-height: 22px;
+  line-height: 21px;
   color: #ffffff;
   margin: 14px 6px;
 `;
@@ -223,7 +223,7 @@ const CommentTitle = styled.p`
   font-family: "Pretendard-SemiBold", system-ui;
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 22px;
   color: #ffffff;
   margin-left: 4px;
@@ -233,7 +233,7 @@ const CommentCount = styled.p`
   font-family: "Pretendard-Regular", system-ui;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 17px;
   color: #ffffff;
   margin: 6px;
