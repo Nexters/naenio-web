@@ -42,6 +42,7 @@ interface Choice {
 
 const Container = styled.div`
   width: 100vw;
+  min-width: 390px;
   height: 100vh;
   background: #191A1F;
   display: flex;
@@ -277,6 +278,7 @@ const BottomTabContainer = styled.a`
   width: 100%;
   height: 114px;
   max-width: 400px;
+  min-width: 390px;
   border-radius: 25px 25px 0 0;
   background-color: #313643;
   position: absolute;
@@ -287,6 +289,7 @@ const BottomTabContainer = styled.a`
 const NaenioLogoContainer = styled.div`
   width: 69px;
   height: 69px;
+  aspect-ratio: 1;
   display: flex;
   margin-left: 25px;
   margin-top: 24px;
@@ -301,6 +304,7 @@ const NaenioLogoContainer = styled.div`
 const NaenioLogoImage = styled.img`
   width: 46.79px;
   height: 42.26px;
+  aspect-ratio: 1;
   z-index: 5;
 `;
 
