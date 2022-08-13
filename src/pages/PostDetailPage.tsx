@@ -42,7 +42,7 @@ interface Choice {
 
 const Container = styled.div`
   width: 100vw;
-  min-width: 390px;
+  min-width: 340px;
   height: 100vh;
   background: #191A1F;
   display: flex;
