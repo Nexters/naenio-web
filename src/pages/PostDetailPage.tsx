@@ -278,7 +278,7 @@ const BottomTabContainer = styled.a`
   width: 100%;
   height: 114px;
   max-width: 400px;
-  min-width: 390px;
+  min-width: 340px;
   border-radius: 25px 25px 0 0;
   background-color: #313643;
   position: absolute;
