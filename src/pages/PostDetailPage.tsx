@@ -275,22 +275,33 @@ const BottomTabContainer = styled.a`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 128px;
+  height: 114px;
   max-width: 400px;
   border-radius: 25px 25px 0 0;
   background-color: #313643;
   position: absolute;
   bottom: 0;
+  z-index: 3;
+`;
+
+const NaenioLogoContainer = styled.div`
+  width: 69px;
+  height: 69px;
+  display: flex;
+  margin-left: 25px;
+  margin-top: 24px;
+  background: black;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.36);
+  border-radius: 14.0816px;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
 `;
 
 const NaenioLogoImage = styled.img`
-  width: 69px;
-  height: 69px;
-  margin-left: 25px;
-  margin-top: 24px;
-  background: #000000;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.36);
-  border-radius: 14.0816px;
+  width: 46.79px;
+  height: 42.26px;
+  z-index: 5;
 `;
 
 const NaenioBigLogoImage = styled.img`
@@ -298,6 +309,7 @@ const NaenioBigLogoImage = styled.img`
   height: 57.15px;
   margin-left: 11px;
   margin-top: 28px;
+  z-index: 4;
 `;
 
 const DownloadButtonImage = styled.img`
@@ -306,6 +318,7 @@ const DownloadButtonImage = styled.img`
   height: 29px;
   margin-left: 16px;
   margin-right: 24px;
+  z-index: 4;
 `;
 
 const PostDetailPage: React.FC = () => {
@@ -336,7 +349,14 @@ const PostDetailPage: React.FC = () => {
 
     fetchPost()
       .then(it => setPost(it));
-  }, [postId])
+  }, [postId]);
+
+  useEffect(() => {
+    if (post.title !== "") {
+      document.querySelector("title")!!.innerHTML = post.title;
+    }
+  }, [post]);
+
 
   const getProfileImageSrc = (profileImageIndex: number) => {
     if (profileImageIndex === 0) {
@@ -409,8 +429,11 @@ const PostDetailPage: React.FC = () => {
           <CommentCount>{post.commentCount}개</CommentCount>
         </CommentContainer>
       </TitleContainer>
-      <BottomTabContainer href={`https://naenioapp.page.link/?link=https://${postId}&ibi=com.teamVS.Naenio&isi=363590051&apn=com.nexters.teamvs.naenio&afl=https://naver.com`}>
-        <NaenioLogoImage src={NaenioLogoSrc} />
+      <BottomTabContainer
+        href={`https://naenioapp.page.link/?link=https://${postId}&ibi=com.teamVS.Naenio&isi=363590051&apn=com.nexters.teamvs.naenio&afl=https://naver.com`}>
+        <NaenioLogoContainer>
+          <NaenioLogoImage src={NaenioLogoSrc} />
+        </NaenioLogoContainer>
         <NaenioBigLogoImage src={NaenioBigLogoSrc} />
         <DownloadButtonImage src={DownloadButtonSrc} />
       </BottomTabContainer>
