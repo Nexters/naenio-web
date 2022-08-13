@@ -12,6 +12,10 @@ import ProfileImageSrc7 from "../images/profile_image_7.png";
 import ProfileImageSrc8 from "../images/profile_image_8.png";
 import VoteBoxSrc from "../images/vote_box.png";
 import BubbleSrc from "../images/bubble.png";
+import NeedLoginSrc from "../images/need_login.png";
+import NaenioLogoSrc from "../images/naenio_logo.png";
+import NaenioBigLogoSrc from "../images/naenio_big_logo.png";
+import DownloadButtonSrc from "../images/download_button.png";
 import axios from "axios";
 
 interface Post {
@@ -108,22 +112,50 @@ const PostContent = styled.p`
   line-height: 21px;
 `;
 
-interface NeedLoginContainerProps {
+interface ActiveNeedLoginProps {
   active: boolean;
 }
 
-const NeedLoginContainer = styled.div<NeedLoginContainerProps>`
-  margin-top: 128px;
+const NeedLoginContainer = styled.div<ActiveNeedLoginProps>`
+  margin-top: 66px;
   position: relative;
   width: 100%;
   height: 240px;
   border-radius: 16px;
-  transition: all 1s;
+  transition: all 0.5s;
   background: rgb(0, 0, 0, ${props => props.active ? 0.8 : 0});
   backdrop-filter: blur(4px) opacity(${props => props.active ? 1 : 0});
   transition-property: background, backdrop-filter;
   z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `
+
+const NeedLoginImage = styled.img<ActiveNeedLoginProps>`
+  position: relative;
+  top: -10px;
+  width: 30px;
+  height: 40px;
+  transition-delay: 1s;
+  transition: opacity 1s;
+  opacity: ${props => props.active ? 1 : 0};
+`;
+
+const NeedLoginDescription = styled.p<ActiveNeedLoginProps>`
+  display: flex;
+  font-family: "Pretendard-SemiBold", system-ui;
+  font-style: normal;
+  font-weight: 600;
+  color: #E88CFF;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 12px;
+  transition-delay: 1s;
+  transition: opacity 1s;
+  opacity: ${props => props.active ? 1 : 0};
+`;
 
 const ChoicesContainer = styled.div`
   position: relative;
@@ -239,6 +271,43 @@ const CommentCount = styled.p`
   margin: 6px;
 `;
 
+const BottomTabContainer = styled.a`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 128px;
+  max-width: 400px;
+  border-radius: 25px 25px 0 0;
+  background-color: #313643;
+  position: absolute;
+  bottom: 0;
+`;
+
+const NaenioLogoImage = styled.img`
+  width: 69px;
+  height: 69px;
+  margin-left: 25px;
+  margin-top: 24px;
+  background: #000000;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.36);
+  border-radius: 14.0816px;
+`;
+
+const NaenioBigLogoImage = styled.img`
+  width: 171px;
+  height: 57.15px;
+  margin-left: 11px;
+  margin-top: 28px;
+`;
+
+const DownloadButtonImage = styled.img`
+  margin-top: 48px;
+  width: 75px;
+  height: 29px;
+  margin-left: 16px;
+  margin-right: 24px;
+`;
+
 const PostDetailPage: React.FC = () => {
   const { postId } = useParams();
   const [isClick, setIsClick] = useState(false);
@@ -313,7 +382,14 @@ const PostDetailPage: React.FC = () => {
         <PostTitle>{post.title}</PostTitle>
         <PostContent>{post.content}</PostContent>
         <NeedLoginContainer onClick={() => setIsClick(true)}
-                            active={isClick} />
+                            active={isClick}>
+          <NeedLoginImage
+            src={NeedLoginSrc}
+            active={isClick} />
+          <NeedLoginDescription active={isClick}>
+            앱에서 투표 결과를 확인하세요
+          </NeedLoginDescription>
+        </NeedLoginContainer>
         <ChoicesContainer>
           <FirstChoiceContainer>
             <ChoiceIndex>A.</ChoiceIndex>
@@ -333,7 +409,11 @@ const PostDetailPage: React.FC = () => {
           <CommentCount>{post.commentCount}개</CommentCount>
         </CommentContainer>
       </TitleContainer>
-      {/*<a href={`https://naenioapp.page.link/?link=https://${postId}&ibi=com.teamVS.Naenio&isi=363590051`}>딥링크</a>*/}
+      <BottomTabContainer href={`https://naenioapp.page.link/?link=https://${postId}&ibi=com.teamVS.Naenio&isi=363590051&apn=com.nexters.teamvs.naenio&afl=https://naver.com`}>
+        <NaenioLogoImage src={NaenioLogoSrc} />
+        <NaenioBigLogoImage src={NaenioBigLogoSrc} />
+        <DownloadButtonImage src={DownloadButtonSrc} />
+      </BottomTabContainer>
     </Container>
   );
 }
