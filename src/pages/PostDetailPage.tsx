@@ -434,7 +434,7 @@ const PostDetailPage: React.FC = () => {
         </CommentContainer>
       </TitleContainer>
       <BottomTabContainer
-        href={`https://naenioapp.page.link/?link=https://${postId}&ibi=com.teamVS.Naenio&isi=363590051&apn=com.nexters.teamvs.naenio&afl=https://naver.com`}>
+        href={`https://naenioapp.page.link/?link=https://naenioapp?postId=${postId}&ibi=com.teamVS.Naenio&isi=363590051&apn=com.nexters.teamvs.naenio&afl=https://naver.com`}>
         <NaenioLogoContainer>
           <NaenioLogoImage src={NaenioLogoSrc} />
         </NaenioLogoContainer>
